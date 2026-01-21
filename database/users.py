@@ -59,7 +59,7 @@ def display_all_users():
             # Style header row
             for i in range(len(columns)):
                 cell = table[(0, i)]
-                cell.set_facecolor('#4CAF50')
+                cell.set_facecolor("#3D87E2")
                 cell.set_text_props(weight='bold', color='white')
 
             # Alternate row colors
@@ -72,7 +72,6 @@ def display_all_users():
                         cell.set_facecolor('#ffffff')
 
             # Set title
-            plt.title('ALL USERS FROM DATABASE', fontsize=16, fontweight='bold', pad=20)
 
             # Show the plot
             plt.tight_layout()

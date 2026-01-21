@@ -1,0 +1,15 @@
+# Core Machine Learning Libraries
+torch>=2.0.0              # Deep learning framework
+numpy>=1.24.0             # Numerical computing
+scikit-learn>=1.3.0       # Traditional ML algorithms
+
+# Data Visualization
+matplotlib>=3.7.0         # Plotting and visualization
+seaborn>=0.12.0          # Statistical visualization (optional)
+
+# Model Serialization
+joblib>=1.3.0            # Save/load scikit-learn models
+
+# Optional but recommended
+pandas>=2.0.0            # Data manipulation (for advanced use)
+tqdm>=4.65.0             # Progress bars (for advanced use)

@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haor Flood Management & Livelihood Improvement Project - EIA Study</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0077b6;
+            --primary-light: #90e0ef;
+            --primary-lighter: #caf0f8;
+            --primary-dark: #023e8a;
+            --accent: #00b4d8;
+            --white: #ffffff;
+            --gray-100: #f8f9fa;
+            --gray-200: #e9ecef;
+            --gray-600: #6c757d;
+            --gray-800: #343a40;
+            --success: #38b000;
+            --warning: #ffaa00;
+            --danger: #d00000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--primary-lighter) 0%, var(--white) 50%, var(--primary-lighter) 100%);
+            min-height: 100vh;
+            color: var(--gray-800);
+            line-height: 1.7;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--accent) 100%);
+            color: var(--white);
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='0.1' d='M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E") no-repeat bottom;
+            background-size: cover;
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            position: relative;
+        }
+
+        .header-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--white);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            list-style: none;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav a {
+            color: var(--primary);
+            text-decoration: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        nav a:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        section {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 40px rgba(0,119,182,0.1);
+            border: 1px solid var(--primary-lighter);
+            animation: fadeInUp 0.6s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-dark);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid var(--primary-light);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        section h2 i {
+            color: var(--accent);
+        }
+
+        h3 {
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin: 1.5rem 0 1rem;
+        }
+
+        /* Step Cards */
+        .step-container {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .step {
+            background: linear-gradient(135deg, var(--primary-lighter) 0%, var(--white) 100%);
+            border-radius: 15px;
+            padding: 1.5rem;
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            border-left: 4px solid var(--primary);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .step:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 25px rgba(0,119,182,0.15);
+        }
+
+        .step-number {
+            background: var(--primary);
+            color: var(--white);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .step-content p {
+            color: var(--gray-600);
+            font-size: 0.95rem;
+        }
+
+        /* Component Cards */
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .component-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 2px solid var(--primary-light);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .component-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .component-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,119,182,0.2);
+            border-color: var(--primary);
+        }
+
+        .component-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-light), var(--primary-lighter));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .component-icon i {
+            font-size: 1.8rem;
+            color: var(--primary-dark);
+        }
+
+        .component-card h4 {
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .component-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .component-card li {
+            padding: 0.4rem 0;
+            color: var(--gray-600);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .component-card li i {
+            color: var(--success);
+            margin-top: 0.25rem;
+        }
+
+        /* Map Section */
+        .map-container {
+            background: linear-gradient(135deg, var(--primary-lighter) 0%, var(--white) 100%);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .district-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .district-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 1.2rem;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .district-card:hover {
+            border-color: var(--primary);
+            transform: scale(1.02);
+        }
+
+        .district-card i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .district-card h5 {
+            color: var(--primary-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .district-card span {
+            font-size: 0.85rem;
+            color: var(--gray-600);
+        }
+
+        /* Cost Table */
+        .cost-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .cost-table th {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: var(--white);
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .cost-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .cost-table tr:nth-child(even) {
+            background: var(--primary-lighter);
+        }
+
+        .cost-table tr:hover {
+            background: var(--primary-light);
+        }
+
+        /* Category Tags */
+        .category-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .category-tag {
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .category-green {
+            background: linear-gradient(135deg, #d8f3dc, #b7e4c7);
+            color: #1b4332;
+            border: 2px solid #52b788;
+        }
+
+        .category-orange-a {
+            background: linear-gradient(135deg, #ffe8d6, #ffd7ba);
+            color: #6d4c41;
+            border: 2px solid #f4a261;
+        }
+
+        .category-orange-b {
+            background: linear-gradient(135deg, #ffcc80, #ffb347);
+            color: #5d4037;
+            border: 2px solid #ff8c00;
+        }
+
+        .category-red {
+            background: linear-gradient(135deg, #ffccd5, #ff8fa3);
+            color: #7f1d1d;
+            border: 2px solid #e63946;
+        }
+
+        .category-tag i {
+            display: block;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .category-tag small {
+            display: block;
+            margin-top: 0.5rem;
+            font-weight: 400;
+            font-size: 0.8rem;
+        }
+
+        /* Treaty Cards */
+        .treaty-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .treaty-card {
+            background: linear-gradient(135deg, var(--white) 0%, var(--primary-lighter) 100%);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid var(--primary-light);
+            transition: all 0.3s ease;
+        }
+
+        .treaty-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,119,182,0.15);
+        }
+
+        .treaty-card .treaty-logo {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .treaty-card .treaty-logo i {
+            color: var(--white);
+            font-size: 1.5rem;
+        }
+
+        .treaty-card h4 {
+            color: var(--primary-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .treaty-card .year {
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .treaty-card p {
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            margin-top: 0.75rem;
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .team-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 2px solid var(--primary-lighter);
+            transition: all 0.3s ease;
+        }
+
+        .team-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .team-avatar {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .team-avatar i {
+            font-size: 2rem;
+            color: var(--white);
+        }
+
+        .team-card h4 {
+            color: var(--primary-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .team-card span {
+            color: var(--gray-600);
+            font-size: 0.85rem;
+        }
+
+        /* Info Boxes */
+        .info-box {
+            background: linear-gradient(135deg, var(--primary-lighter) 0%, var(--white) 100%);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: 0 12px 12px 0;
+            margin: 1rem 0;
+        }
+
+        .info-box.warning {
+            border-left-color: var(--warning);
+            background: linear-gradient(135deg, #fff3cd 0%, var(--white) 100%);
+        }
+
+        .info-box.success {
+            border-left-color: var(--success);
+            background: linear-gradient(135deg, #d4edda 0%, var(--white) 100%);
+        }
+
+        /* SVG Map Placeholder */
+        .map-svg-container {
+            background: linear-gradient(135deg, var(--primary-lighter) 0%, #e0f4ff 100%);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            margin: 1.5rem 0;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .map-svg-container svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Bullet Lists */
+        .styled-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .styled-list li {
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .styled-list li:last-child {
+            border-bottom: none;
+        }
+
+        .styled-list li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--success);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        footer p {
+            opacity: 0.9;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            nav ul {
+                gap: 0.25rem;
+            }
+
+            nav a {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.75rem;
+            }
+
+            section {
+                padding: 1.5rem;
+            }
+
+            .step {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .step-number {
+                margin: 0 auto;
+            }
+        }
+
+        /* Scroll Animation */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1><i class="fas fa-water"></i> Haor Flood Management & Livelihood Improvement Project</h1>
+        <p>Environmental Impact Assessment (EIA) Study</p>
+        <div class="header-badge">
+            <i class="fas fa-leaf"></i> Bangladesh Water Development Board (BWDB) & JICA
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#background"><i class="fas fa-info-circle"></i> Background</a></li>
+            <li><a href="#components"><i class="fas fa-puzzle-piece"></i> Components</a></li>
+            <li><a href="#districts"><i class="fas fa-map-marked-alt"></i> Districts & Map</a></li>
+            <li><a href="#objectives"><i class="fas fa-bullseye"></i> EIA Objectives</a></li>
+            <li><a href="#scope"><i class="fas fa-tasks"></i> Scope of Work</a></li>
+            <li><a href="#guidelines"><i class="fas fa-gavel"></i> Guidelines</a></li>
+            <li><a href="#treaties"><i class="fas fa-globe"></i> Treaties</a></li>
+            <li><a href="#categories"><i class="fas fa-layer-group"></i> Categories</a></li>
+            <li><a href="#screening"><i class="fas fa-filter"></i> Screening</a></li>
+            <li><a href="#team"><i class="fas fa-users"></i> EIA Team</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Background Section -->
+        <section id="background" class="scroll-animate">
+            <h2><i class="fas fa-history"></i> Project Background</h2>
+            
+            <div class="info-box">
+                <strong><i class="fas fa-lightbulb"></i> What are Haors?</strong>
+                <p>Haors are bowl-shaped floodplain depressions located in the north-eastern region of Bangladesh, covering approximately 19,998 sq km and accommodating roughly 2 crore (20 million) people.</p>
+            </div>
+
+            <div class="step-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>The Challenge</h4>
+                        <p>The haor region has long been lagging behind mainstream national development. People in this region are poorer than in other parts of the country, largely due to frequent pre-monsoon flash floods that damage boro crops - often the only crop cultivated in haor areas.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Government Initiative</h4>
+                        <p>The Government of Bangladesh (GoB) through the Bangladesh Haor and Wetland Development Board (BHWDB) formulated a comprehensive Master Plan in April 2012 to address flood management and holistic development in the haor area.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>JICA Partnership</h4>
+                        <p>Japan International Cooperation Agency (JICA) conducted feasibility studies (2012-2014) and partnered with GoB to implement the Haor Flood Management and Livelihood Improvement Project (HFM&LIP) as a Yen Loan Project from 2014-2021.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Project Objective</h4>
+                        <p>To reduce flood damages, improve access to basic infrastructure, and increase agriculture and fishery productivity in the haor areas of the upper Meghna river basin, thereby improving living standards and economic activities.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box success" style="margin-top: 1.5rem;">
+                <strong><i class="fas fa-chart-line"></i> Expected Outcomes:</strong>
+                <p>Poverty reduction, job creation (especially for landless and women), protection of boro crops from flash floods, and improved rural infrastructure connectivity.</p>
+            </div>
+        </section>
+
+        <!-- 3 Components Section -->
+        <section id="components" class="scroll-animate">
+            <h2><i class="fas fa-puzzle-piece"></i> Three Project Components</h2>
+            
+            <p>The project comprises three interconnected components, implemented by different agencies to ensure comprehensive development:</p>
+
+            <div class="component-grid">
+                <div class="component-card">
+                    <div class="component-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>Component 1: Pre-monsoon Flood Management</h4>
+                    <p><strong>Implementing Agency:</strong> BWDB</p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Construction & re-sectioning of submergible embankments</li>
+                        <li><i class="fas fa-check-circle"></i> Protection of boro crops from flash floods</li>
+                        <li><i class="fas fa-check-circle"></i> Rehabilitation of flood management facilities</li>
+                        <li><i class="fas fa-check-circle"></i> Water control structures and regulators</li>
+                    </ul>
+                </div>
+
+                <div class="component-card">
+                    <div class="component-icon">
+                        <i class="fas fa-road"></i>
+                    </div>
+                    <h4>Component 2: Rural Infrastructure Development</h4>
+                    <p><strong>Implementing Agency:</strong> LGED</p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Construction of rural roads and bridges</li>
+                        <li><i class="fas fa-check-circle"></i> Culverts and boat landing ghats</li>
+                        <li><i class="fas fa-check-circle"></i> Rural market development</li>
+                        <li><i class="fas fa-check-circle"></i> Improved access to markets and services</li>
+                    </ul>
+                </div>
+
+                <div class="component-card">
+                    <div class="component-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h4>Component 3: Livelihood Enhancement</h4>
+                    <p><strong>Implementing Agencies:</strong> BWDB & LGED</p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> <strong>3-1:</strong> Agricultural promotion (BWDB)</li>
+                        <li><i class="fas fa-check-circle"></i> <strong>3-2:</strong> Fisheries promotion (LGED)</li>
+                        <li><i class="fas fa-check-circle"></i> Improved farming technologies</li>
+                        <li><i class="fas fa-check-circle"></i> Community-based water management</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="info-box" style="margin-top: 1.5rem;">
+                <strong><i class="fas fa-users"></i> Beneficiaries:</strong>
+                <p>The project targets approximately 3.8 million people (around 688,000 households) across 28 upazilas and 165 unions in the haor region.</p>
+            </div>
+        </section>
+
+        <!-- Districts & Map Section -->
+        <section id="districts" class="scroll-animate">
+            <h2><i class="fas fa-map-marked-alt"></i> Project Districts & Map Area</h2>
+
+            <div class="map-svg-container">
+                <!-- Bangladesh Haor Region Map SVG -->
+                <svg viewBox="0 0 600 500" xmlns="http://www.w3.org/2000/svg" style="max-width: 500px;">
+                    <!-- Background -->
+                    <defs>
+                        <linearGradient id="waterGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#90e0ef;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#0077b6;stop-opacity:1" />
+                        </linearGradient>
+                        <linearGradient id="landGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#caf0f8;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#90e0ef;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    
+                    <!-- Title -->
+                    <text x="300" y="30" text-anchor="middle" font-family="Poppins" font-size="18" font-weight="600" fill="#023e8a">Haor Region - Northeast Bangladesh</text>
+                    
+                    <!-- Outer boundary representing India border -->
+                    <path d="M50,80 Q150,50 300,60 Q450,50 550,100 L550,400 Q450,450 300,440 Q150,450 50,400 Z" fill="#e9ecef" stroke="#adb5bd" stroke-width="2"/>
+                    
+                    <!-- Haor Districts -->
+                    <!-- Sunamganj -->
+                    <path d="M100,120 Q150,100 220,110 L240,180 Q200,200 150,190 L100,150 Z" fill="url(#waterGrad)" stroke="#023e8a" stroke-width="2" opacity="0.9"/>
+                    <text x="165" y="155" text-anchor="middle" font-family="Poppins" font-size="11" font-weight="600" fill="#fff">Sunamganj</text>
+                    
+                    <!-- Sylhet -->
+                    <path d="M240,90 Q320,80 400,100 L420,170 Q360,190 280,180 L240,120 Z" fill="url(#landGrad)" stroke="#023e8a" stroke-width="2" opacity="0.7"/>
+                    <text x="330" y="140" text-anchor="middle" font-family="Poppins" font-size="11" font-weight="500" fill="#023e8a">Sylhet</text>
+                    
+                    <!-- Netrokona -->
+                    <path d="M80,180 Q130,170 180,180 L200,260 Q150,280 100,270 L80,220 Z" fill="url(#waterGrad)" stroke="#023e8a" stroke-width="2" opacity="0.9"/>
+                    <text x="140" y="230" text-anchor="middle" font-family="Poppins" font-size="11" font-weight="600" fill="#fff">Netrokona</text>
+                    
+                    <!-- Habiganj -->
+                    <path d="M280,180 Q350,170 420,180 L440,270 Q380,290 310,280 L280,220 Z" fill="url(#waterGrad)" stroke="#023e8a" stroke-width="2" opacity="0.9"/>
+                    <text x="360" y="235" text-anchor="middle" font-family="Poppins" font-size="11" font-weight="600" fill="#fff">Habiganj</text>
+                    
+                    <!-- Kishoreganj -->
+                    <path d="M150,270 Q220,260 280,270 L300,360 Q240,380 180,370 L150,310 Z" fill="url(#waterGrad)" stroke="#023e8a" stroke-width="2" opacity="0.9"/>
+                    <text x="225" y="325" text-anchor="middle" font-family="Poppins" font-size="11" font-weight="600" fill="#fff">Kishoreganj</text>
+                    
+                    <!-- Brahmanbaria -->
+                    <path d="M310,280 Q380,270 440,290 L460,380 Q400,400 340,390 L310,330 Z" fill="url(#waterGrad)" stroke="#023e8a" stroke-width="2" opacity="0.9"/>
+                    <text x="385" y="340" text-anchor="middle" font-family="Poppins" font-size="10" font-weight="600" fill="#fff">Brahmanbaria</text>
+                    
+                    <!-- Maulvibazar -->
+                    <path d="M420,100 Q480,90 530,120 L540,200 Q490,220 440,210 L420,150 Z" fill="url(#landGrad)" stroke="#023e8a" stroke-width="2" opacity="0.7"/>
+                    <text x="480" y="160" text-anchor="middle" font-family="Poppins" font-size="10" font-weight="500" fill="#023e8a">Maulvibazar</text>
+                    
+                    <!-- Rivers -->
+                    <path d="M100,200 Q200,240 300,220 Q400,200 500,250" fill="none" stroke="#00b4d8" stroke-width="4" stroke-linecap="round"/>
+                    <text x="300" y="210" text-anchor="middle" font-family="Poppins" font-size="9" fill="#0077b6">Surma River</text>
+                    
+                    <path d="M150,350 Q250,330 350,340 Q450,350 520,380" fill="none" stroke="#00b4d8" stroke-width="4" stroke-linecap="round"/>
+                    <text x="340" y="370" text-anchor="middle" font-family="Poppins" font-size="9" fill="#0077b6">Meghna River</text>
+                    
+                    <!-- Legend -->
+                    <rect x="420" y="420" width="15" height="15" fill="url(#waterGrad)" stroke="#023e8a"/>
+                    <text x="440" y="432" font-family="Poppins" font-size="10" fill="#343a40">Project Districts</text>
+                    
+                    <rect x="420" y="445" width="15" height="15" fill="url(#landGrad)" stroke="#023e8a"/>
+                    <text x="440" y="457" font-family="Poppins" font-size="10" fill="#343a40">Other Haor Districts</text>
+                    
+                    <!-- India Label -->
+                    <text x="520" y="75" font-family="Poppins" font-size="10" fill="#6c757d" font-style="italic">India</text>
+                    <text x="70" y="100" font-family="Poppins" font-size="10" fill="#6c757d" font-style="italic">India</text>
+                </svg>
+                <p style="margin-top: 1rem; color: var(--gray-600); font-size: 0.9rem;">
+                    <i class="fas fa-info-circle"></i> The 5 primary project districts are shown in blue gradient
+                </p>
+            </div>
+
+            <div class="district-grid">
+                <div class="district-card">
+                    <i class="fas fa-map-pin"></i>
+                    <h5>Sunamganj</h5>
+                    <span>95 Haors | Northern Region</span>
+                </div>
+                <div class="district-card">
+                    <i class="fas fa-map-pin"></i>
+                    <h5>Kishoreganj</h5>
+                    <span>97 Haors | Central Region</span>
+                </div>
+                <div class="district-card">
+                    <i class="fas fa-map-pin"></i>
+                    <h5>Netrokona</h5>
+                    <span>52 Haors | Western Region</span>
+                </div>
+                <div class="district-card">
+                    <i class="fas fa-map-pin"></i>
+                    <h5>Habiganj</h5>
+                    <span>14 Haors | Eastern Region</span>
+                </div>
+                <div class="district-card">
+                    <i class="fas fa-map-pin"></i>
+                    <h5>Brahmanbaria</h5>
+                    <span>3 Haors | Southern Region</span>
+                </div>
+            </div>
+
+            <h3><i class="fas fa-money-bill-wave"></i> Construction Cost Overview</h3>
+            <table class="cost-table">
+                <thead>
+                    <tr>
+                        <th>Component</th>
+                        <th>Description</th>
+                        <th>Estimated Cost</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>HILIP + CALIP Total</td>
+                        <td>Haor Infrastructure & Livelihood Improvement + Climate Adaptation</td>
+                        <td>$134.84 Million</td>
+                    </tr>
+                    <tr>
+                        <td>CALIP Component</td>
+                        <td>Climate Adaptation and Livelihood Protection</td>
+                        <td>$15 Million</td>
+                    </tr>
+                    <tr>
+                        <td>Elevated Road (Example)</td>
+                        <td>Sunamganj-Netrokona Infrastructure Project</td>
+                        <td>Tk 3,490 Crore</td>
+                    </tr>
+                    <tr>
+                        <td>All-weather Road</td>
+                        <td>Kishoreganj Haor Road (30km, 2016-2020)</td>
+                        <td>Tk 874.08 Crore</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="info-box warning" style="margin-top: 1.5rem;">
+                <strong><i class="fas fa-exclamation-triangle"></i> Key Statistics:</strong>
+                <p>373 haors covering approximately 859,000 hectares (43% of total haor district area) across 7 districts. The region contributes about 16% of Bangladesh's total paddy production.</p>
+            </div>
+        </section>
+
+        <!-- EIA Objectives Section -->
+        <section id="objectives" class="scroll-animate">
+            <h2><i class="fas fa-bullseye"></i> EIA Objectives</h2>
+
+            <p>The Environmental Impact Assessment (EIA) for the Haor Flood Management Project aims to identify, predict, evaluate, and mitigate environmental impacts before project implementation.</p>
+
+            <div class="step-container">
+                <div class="step">
+                    <div class="step-number"><i class="fas fa-search"></i></div>
+                    <div class="step-content">
+                        <h4>Identify Potential Impacts</h4>
+                        <p>Systematically identify all potential environmental and social impacts during pre-construction, construction, and operation phases of the project.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number"><i class="fas fa-chart-line"></i></div>
+                    <div class="step-content">
+                        <h4>Predict Impact Significance</h4>
+                        <p>Predict and evaluate the significance of anticipated impacts on air quality, water resources, biodiversity, land use, and local communities.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number"><i class="fas fa-tools"></i></div>
+                    <div class="step-content">
+                        <h4>Develop Mitigation Measures</h4>
+                        <p>Propose effective mitigation measures to minimize adverse impacts and enhance positive environmental outcomes.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number"><i class="fas fa-clipboard-check"></i></div>
+                    <div class="step-content">
+                        <h4>Environmental Management Plan</h4>
+                        <p>Develop a comprehensive Environmental Management Plan (EMP) including monitoring protocols and compliance mechanisms.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number"><i class="fas fa-users"></i></div>
+                    <div class="step-content">
+                        <h4>Stakeholder Engagement</h4>
+                        <p>Ensure meaningful public consultation and participation of affected communities, local authorities, and other stakeholders in the EIA process.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number"><i class="fas fa-balance-scale"></i></div>
+                    <div class="step-content">
+                        <h4>Regulatory Compliance</h4>
+                        <p>Ensure compliance with Bangladesh Environmental Conservation Act 1995, ECR 1997/2023, and JICA Environmental Guidelines.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scope of Work Section -->
+        <section id="scope" class="scroll-animate">
+            <h2><i class="fas fa-tasks"></i> Scope of Work</h2>
+
+            <div class="component-grid">
+                <div class="component-card">
+                    <div class="component-icon">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <h4>Baseline Data Collection</h4>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Physical: landforms, drainage, meteorology, air & water quality</li>
+                        <li><i class="fas fa-check-circle"></i> Biological: biodiversity, habitat areas, ecosystem products</li>
+                        <li><i class="fas fa-check-circle"></i> Social: demographics, land acquisition, displacement data</li>
+                    </ul>
+                </div>
+
+                <div class="component-card">
+                    <div class="component-icon">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <h4>Impact Assessment</h4>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Air quality impact analysis</li>
+                        <li><i class="fas fa-check-circle"></i> Water resources & hydrology</li>
+                        <li><i class="fas fa-check-circle"></i> Terrestrial & aquatic ecology</li>
+                        <li><i class="fas fa-check-circle"></i> Socio-economic impacts</li>
+                    </ul>
+                </div>
+
+                <div class="component-card">
+                    <div class="component-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>Mitigation Planning</h4>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Avoid impacts through alternatives</li>
+                        <li><i class="fas fa-check-circle"></i> Minimize unavoidable impacts</li>
+                        <li><i class="fas fa-check-circle"></i> Compensate for residual impacts</li>
+                        <li><i class="fas fa-check-circle"></i> Enhance positive impacts</li>
+                    </ul>
+                </div>
+
+                <div class="component-card">
+                    <div class="component-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h4>Monitoring & Reporting</h4>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Environmental monitoring program</li>
+                        <li><i class="fas fa-check-circle"></i> Compliance verification</li>
+                        <li><i class="fas fa-check-circle"></i> Performance indicators</li>
+                        <li><i class="fas fa-check-circle"></i> Periodic reporting to DoE</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3><i class="fas fa-map"></i> Study Area Coverage</h3>
+            <div class="info-box">
+                <p>The EIA study area covers approximately <strong>2km radius</strong> around proposed infrastructure, adjusted during scoping to reflect local topography and land uses. This includes impact assessment on 14 new haors with comprehensive sampling for air, water, and soil quality.</p>
+            </div>
+        </section>
+
+        <!-- EIA Guidelines Section -->
+        <section id="guidelines" class="scroll-animate">
+            <h2><i class="fas fa-gavel"></i> EIA Guidelines & Regulations</h2>
+
+            <h3><i class="fas fa-landmark"></i> National Legal Framework</h3>
+            <div class="step-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Environmental Conservation Act (ECA), 1995</h4>
+                        <p>The main legislation for environment protection in Bangladesh. Section 12 mandates that no industrial unit or project shall be established without Environmental Clearance from the Director General, DoE.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Environmental Conservation Rules (ECR), 1997 & 2023</h4>
+                        <p>Provides detailed procedures for EIA, project categorization (Green, Yellow, Orange, Red), and Environmental Clearance Certificate (ECC) requirements.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>National Environmental Policy, 1992 (Revised 2018)</h4>
+                        <p>Developed in response to Rio Declaration, establishing policy objectives for environmental conservation and sustainable development.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>EIA Guidelines for Industries (DoE)</h4>
+                        <p>Provides six-step EIA process: Screening, Scoping, Baseline Data Generation, Impact Assessment, Mitigation of Impacts, and Environmental Management Plan.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3><i class="fas fa-handshake"></i> Donor Agency Guidelines</h3>
+            <div class="component-grid">
+                <div class="component-card">
+                    <div class="component-icon">
+                        <i class="fas fa-yen-sign"></i>
+                    </div>
+                    <h4>JICA Environmental Guidelines</h4>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Category A projects require full EIA</li>
+                        <li><i class="fas fa-check-circle"></i> Land acquisition & compensation requirements</li>
+                        <li><i class="fas fa-check-circle"></i> Public consultation mandates</li>
+                        <li><i class="fas fa-check-circle"></i> Gap analysis with national regulations</li>
+                    </ul>
+                </div>
+
+                <div class="component-card">
+                    <div class="component-icon">
+                        <i class="fas fa-globe-asia"></i>
+                    </div>
+                    <h4>World Bank Safeguard Policies</h4>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> OP 4.01 Environmental Assessment</li>
+                        <li><i class="fas fa-check-circle"></i> OP 4.04 Natural Habitats</li>
+                        <li><i class="fas fa-check-circle"></i> OP 4.11 Physical Cultural Resources</li>
+                        <li><i class="fas fa-check-circle"></i> OP 4.37 Safety of Dams</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- International Treaties Section -->
+        <section id="treaties" class="scroll-animate">
+            <h2><i class="fas fa-globe"></i> International Treaties & Conventions</h2>
+
+            <p>Bangladesh is a signatory to several international environmental conventions relevant to wetland management and biodiversity conservation:</p>
+
+            <div class="treaty-grid">
+                <div class="treaty-card">
+                    <div class="treaty-logo">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <h4>Ramsar Convention</h4>
+                    <span class="year">1971</span>
+                    <p>Convention on Wetlands of International Importance. Bangladesh has designated several Ramsar sites including Tanguar Haor (designated 2000) and Hakaluki Haor.</p>
+                </div>
+
+                <div class="treaty-card">
+                    <div class="treaty-logo">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h4>Convention on Biological Diversity (CBD)</h4>
+                    <span class="year">1992</span>
+                    <p>Focuses on conservation of biological diversity, sustainable use of components, and fair sharing of genetic resources benefits.</p>
+                </div>
+
+                <div class="treaty-card">
+                    <div class="treaty-logo">
+                        <i class="fas fa-paw"></i>
+                    </div>
+                    <h4>CITES</h4>
+                    <span class="year">1973</span>
+                    <p>Convention on International Trade in Endangered Species. Protects wildlife through international trade regulations. Bangladesh joined in 1981.</p>
+                </div>
+
+                <div class="treaty-card">
+                    <div class="treaty-logo">
+                        <i class="fas fa-temperature-high"></i>
+                    </div>
+                    <h4>UNFCCC</h4>
+                    <span class="year">1992</span>
+                    <p>United Nations Framework Convention on Climate Change. Bangladesh follows Common but Differentiated Responsibilities (CBDR) principle.</p>
+                </div>
+
+                <div class="treaty-card">
+                    <div class="treaty-logo">
+                        <i class="fas fa-dove"></i>
+                    </div>
+                    <h4>CMS (Bonn Convention)</h4>
+                    <span class="year">1979</span>
+                    <p>Convention on Migratory Species. Protects migratory birds visiting haor wetlands including thousands of waterfowl species.</p>
+                </div>
+
+                <div class="treaty-card">
+                    <div class="treaty-logo">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <h4>World Heritage Convention</h4>
+                    <span class="year">1972</span>
+                    <p>UNESCO convention for protection of cultural and natural heritage. The Sundarbans is a designated World Heritage Site.</p>
+                </div>
+            </div>
+
+            <div class="info-box success" style="margin-top: 1.5rem;">
+                <strong><i class="fas fa-certificate"></i> Tanguar Haor - Ramsar Site:</strong>
+                <p>Tanguar Haor in Sunamganj district was declared an Ecologically Critical Area (ECA) in 1999 and a Ramsar site in 2000, highlighting the international significance of haor wetlands.</p>
+            </div>
+        </section>
+
+        <!-- Project Categories Section -->
+        <section id="categories" class="scroll-animate">
+            <h2><i class="fas fa-layer-group"></i> Project Categories (ECR Classification)</h2>
+
+            <p>Under Bangladesh's Environmental Conservation Rules (ECR), projects are classified into four categories based on their potential environmental impact:</p>
+
+            <div class="category-container">
+                <div class="category-tag category-green">
+                    <i class="fas fa-leaf"></i>
+                    <strong>GREEN</strong>
+                    <small>Negligible/Positive Impact</small>
+                    <p style="font-weight: normal; font-size: 0.85rem; margin-top: 0.5rem;">No EIA required. Example: Plantations, nurseries</p>
+                </div>
+
+                <div class="category-tag category-orange-a">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <strong>ORANGE-A</strong>
+                    <small>Minor/Temporary Impact</small>
+                    <p style="font-weight: normal; font-size: 0.85rem; margin-top: 0.5rem;">IEE required. Example: Tube wells, small ponds</p>
+                </div>
+
+                <div class="category-tag category-orange-b">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <strong>ORANGE-B</strong>
+                    <small>Moderate Impact</small>
+                    <p style="font-weight: normal; font-size: 0.85rem; margin-top: 0.5rem;">IEE + Site Clearance required. Example: Solar plants &gt;50MW</p>
+                </div>
+
+                <div class="category-tag category-red">
+                    <i class="fas fa-radiation"></i>
+                    <strong>RED</strong>
+                    <small>Significant Impact</small>
+                    <p style="font-weight: normal; font-size: 0.85rem; margin-top: 0.5rem;">Full EIA + IEE required. Example: Large infrastructure, dredging</p>
+                </div>
+            </div>
+
+            <div class="info-box warning" style="margin-top: 1.5rem;">
+                <strong><i class="fas fa-exclamation-triangle"></i> Haor Project Classification:</strong>
+                <p>The Haor Flood Management Project falls under <strong>RED Category</strong> due to activities like river protection works, dredging/excavation, and embankment construction. This requires both IEE for site clearance and full EIA for Environmental Clearance Certificate (ECC).</p>
+            </div>
+
+            <h3><i class="fas fa-file-alt"></i> Documentation Requirements by Category</h3>
+            <table class="cost-table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Location Clearance</th>
+                        <th>IEE</th>
+                        <th>Full EIA</th>
+                        <th>ECC Validity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span style="color: #38b000;">●</span> Green</td>
+                        <td>Not Required</td>
+                        <td>Not Required</td>
+                        <td>Not Required</td>
+                        <td>3 Years</td>
+                    </tr>
+                    <tr>
+                        <td><span style="color: #f4a261;">●</span> Orange-A</td>
+                        <td>Required</td>
+                        <td>Required</td>
+                        <td>Not Required</td>
+                        <td>1 Year</td>
+                    </tr>
+                    <tr>
+                        <td><span style="color: #ff8c00;">●</span> Orange-B</td>
+                        <td>Required</td>
+                        <td>Required</td>
+                        <td>Not Required</td>
+                        <td>1 Year</td>
+                    </tr>
+                    <tr>
+                        <td><span style="color: #e63946;">●</span> Red</td>
+                        <td>Required</td>
+                        <td>Required</td>
+                        <td>Required</td>
+                        <td>1 Year (Annual Renewal)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Screening Section -->
+        <section id="screening" class="scroll-animate">
+            <h2><i class="fas fa-filter"></i> Screening the Project & Why</h2>
+
+            <h3><i class="fas fa-question-circle"></i> What is Screening?</h3>
+            <p>Screening is the first stage of environmental assessment that determines whether a project requires EIA and at what level of detail. It helps avoid wasting time and resources on projects with insignificant environmental impacts.</p>
+
+            <div class="step-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Project Classification</h4>
+                        <p>The project is classified based on Schedule 1 of ECR, which lists project types under Green, Orange-A, Orange-B, and Red categories.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Site Suitability Assessment</h4>
+                        <p>Evaluation of project location considering proximity to sensitive areas like Ecologically Critical Areas (ECAs), protected areas, and human settlements.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Impact Significance Check</h4>
+                        <p>Preliminary assessment of potential impacts on air, water, land, biodiversity, and socio-economic conditions.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Decision & Documentation</h4>
+                        <p>Based on screening, determine if IEE or full EIA is needed, and proceed with appropriate documentation.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3><i class="fas fa-clipboard-check"></i> Why This Project Requires Full EIA</h3>
+            <div class="component-grid">
+                <div class="component-card">
+                    <div class="component-icon">
+                        <i class="fas fa-hard-hat"></i>
+                    </div>
+                    <h4>Construction Activities</h4>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> River protection works</li>
+                        <li><i class="fas fa-check-circle"></i> Dredging and excavation</li>
+                        <li><i class="fas fa-check-circle"></i> Embankment construction</li>
+                        <li><i class="fas fa-check-circle"></i> Large-scale infrastructure</li>
+                    </ul>
+                </div>
+
+                <div class="component-card">
+                    <div class="component-icon">
+                        <i class="fas fa-fish"></i>
+                    </div>
+                    <h4>Sensitive Ecosystems</h4>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Proximity to Ramsar sites</li>
+                        <li><i class="fas fa-check-circle"></i> Ecologically Critical Areas</li>
+                        <li><i class="fas fa-check-circle"></i> Migratory bird habitats</li>
+                        <li><i class="fas fa-check-circle"></i> Fish breeding grounds</li>
+                    </ul>
+                </div>
+
+                <div class="component-card">
+                    <div class="component-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h4>Social Considerations</h4>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Large affected population</li>
+                        <li><i class="fas fa-check-circle"></i> Land acquisition needs</li>
+                        <li><i class="fas fa-check-circle"></i> Livelihood impacts</li>
+                        <li><i class="fas fa-check-circle"></i> Displacement concerns</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="info-box" style="margin-top: 1.5rem;">
+                <strong><i class="fas fa-gavel"></i> JICA Category A Classification:</strong>
+                <p>Under JICA Environmental Guidelines, the project is classified as Category "A" requiring full EIA due to potentially significant environmental impacts. This aligns with the "Red" category under Bangladesh ECR.</p>
+            </div>
+        </section>
+
+        <!-- EIA Team Section -->
+        <section id="team" class="scroll-animate">
+            <h2><i class="fas fa-users"></i> EIA Team Composition</h2>
+
+            <p>A comprehensive EIA requires a multidisciplinary team with expertise across various environmental and social disciplines:</p>
+
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h4>Team Leader / EIA Coordinator</h4>
+                    <span>Overall coordination, quality assurance, stakeholder management</span>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <i class="fas fa-tree"></i>
+                    </div>
+                    <h4>Environmental Specialist</h4>
+                    <span>Environmental baseline, impact assessment, mitigation measures</span>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <h4>Water Resources Engineer</h4>
+                    <span>Hydrology, flood management, water quality assessment</span>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <i class="fas fa-fish"></i>
+                    </div>
+                    <h4>Ecologist / Biodiversity Expert</h4>
+                    <span>Flora & fauna surveys, habitat assessment, ecological impacts</span>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h4>Social Development Specialist</h4>
+                    <span>Socio-economic surveys, public consultation, resettlement planning</span>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h4>GIS/Remote Sensing Expert</h4>
+                    <span>Spatial analysis, mapping, land use assessment</span>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <i class="fas fa-hard-hat"></i>
+                    </div>
+                    <h4>Civil/Structural Engineer</h4>
+                    <span>Infrastructure design review, construction impact assessment</span>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-avatar">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h4>Agriculture/Fisheries Expert</h4>
+                    <span>Agricultural impacts, fisheries assessment, livelihood analysis</span>
+                </div>
+            </div>
+
+            <h3><i class="fas fa-building"></i> Key Implementing Agencies</h3>
+            <div class="component-grid">
+                <div class="component-card">
+                    <div class="component-icon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <h4>BWDB</h4>
+                    <p>Bangladesh Water Development Board - Flood management component & agricultural promotion</p>
+                </div>
+
+                <div class="component-card">
+                    <div class="component-icon">
+                        <i class="fas fa-road"></i>
+                    </div>
+                    <h4>LGED</h4>
+                    <p>Local Government Engineering Department - Rural infrastructure & fisheries promotion</p>
+                </div>
+
+                <div class="component-card">
+                    <div class="component-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h4>DoE</h4>
+                    <p>Department of Environment - EIA review, approval & environmental clearance</p>
+                </div>
+            </div>
+
+            <div class="info-box success" style="margin-top: 1.5rem;">
+                <strong><i class="fas fa-certificate"></i> Consultant Qualifications (ECR 2023):</strong>
+                <p>EIA consultants must be registered in Bangladesh with demonstrated experience in environmental assessment studies. The EIA team should include subject matter experts qualified as per DoE guidelines.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p><i class="fas fa-leaf"></i> Haor Flood Management & Livelihood Improvement Project - EIA Study</p>
+        <p style="font-size: 0.85rem; margin-top: 0.5rem;">Government of Bangladesh | BWDB | LGED | JICA</p>
+        <p style="font-size: 0.75rem; margin-top: 1rem; opacity: 0.7;">Educational Reference Material | Environmental Impact Assessment Guidelines</p>
+    </footer>
+
+    <!-- Scroll Animation Script -->
+    <script>
+        // Smooth scroll for navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Scroll animation observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.scroll-animate').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Add active state to nav based on scroll position
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.style.background = '';
+                link.style.color = '';
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.style.background = 'var(--primary)';
+                    link.style.color = 'var(--white)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
