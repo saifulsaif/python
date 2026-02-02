@@ -231,9 +231,37 @@ def predict_single():
             print("❌ Error: Please enter valid numbers!")
             return
 
-        # Visualize the pattern
-        print("\n📺 Your seven-segment display looks like:")
+        # Ask if user wants to add noise
+        print("\n🔊 Do you want to add noise to test robustness?")
+        print("   Noise simulates sensor errors (bit flips, missing segments)")
+        add_noise = input("   Add noise? (y/n): ").strip().lower()
+
         generator = SevenSegmentDataGenerator()
+        original_segments = segments.copy()
+
+        if add_noise == 'y':
+            print("\n   Choose noise level:")
+            print("   1. Low (10% - slight errors)")
+            print("   2. Medium (20% - moderate errors)")
+            print("   3. High (30% - heavy errors)")
+            noise_choice = input("   Enter choice (1-3): ").strip()
+
+            noise_levels = {'1': 0.1, '2': 0.2, '3': 0.3}
+            noise_level = noise_levels.get(noise_choice, 0.15)
+
+            # Apply random noise
+            segments = generator.add_flip_noise(segments, noise_level)
+
+            print(f"\n   ✓ Applied {int(noise_level*100)}% bit-flip noise")
+            print(f"   Original: {original_segments}")
+            print(f"   Noisy:    {segments}")
+
+        # Visualize the pattern
+        print("\n📺 Seven-segment display:")
+        if add_noise == 'y':
+            print("\n   ORIGINAL:")
+            print(generator.visualize_pattern(original_segments))
+            print("\n   WITH NOISE (what model sees):")
         print(generator.visualize_pattern(segments))
 
         # Make prediction
@@ -247,6 +275,15 @@ def predict_single():
         print(f"\n🎯 Prediction: {pred_digit}")
         print(f"📊 Confidence: {confidence:.1f}%")
 
+        if add_noise == 'y':
+            # Show if prediction is robust to noise
+            if confidence > 80:
+                print(f"   ✓ Model is confident despite noise!")
+            elif confidence > 50:
+                print(f"   ⚠️ Model is somewhat uncertain due to noise")
+            else:
+                print(f"   ❌ Model is very uncertain - too much noise!")
+
         # Show all probabilities
         print("\n📈 Probability for each digit:")
         for digit in range(10):
@@ -256,6 +293,111 @@ def predict_single():
 
     except FileNotFoundError:
         print("\n❌ Error: Model file not found! Please train the model first.")
+
+
+def train_with_custom_noise():
+    """
+    ADVANCED: Train Model with Custom Noise Settings
+
+    This lets you experiment with different noise levels to see
+    how they affect model performance.
+    """
+    print_header("TRAIN WITH CUSTOM NOISE")
+
+    print("\n📚 Understanding Noise in Training:")
+    print("   - More noise = Model learns to be more robust")
+    print("   - Less noise = Model learns faster but may overfit")
+    print("   - Real-world sensors have noise, so training with noise helps!")
+
+    # Get noise configuration from user
+    print("\n1️⃣  Choose noise level:")
+    print("   1. No noise (0%) - Clean data only")
+    print("   2. Low noise (10%) - Minimal errors")
+    print("   3. Medium noise (20%) - Moderate errors")
+    print("   4. High noise (30%) - Heavy errors")
+
+    noise_choice = input("\n   Enter choice (1-4): ").strip()
+    noise_levels = {'1': 0.0, '2': 0.1, '3': 0.2, '4': 0.3}
+    noise_level = noise_levels.get(noise_choice, 0.15)
+
+    print("\n2️⃣  Choose training data size:")
+    print("   1. Small (500 examples) - Fast training")
+    print("   2. Medium (1000 examples) - Balanced")
+    print("   3. Large (2000 examples) - Best accuracy")
+
+    size_choice = input("\n   Enter choice (1-3): ").strip()
+    sizes = {'1': (100, 400), '2': (200, 800), '3': (400, 1600)}
+    clean_samples, noisy_samples = sizes.get(size_choice, (200, 800))
+
+    print("\n3️⃣  Choose number of training epochs:")
+    print("   1. Quick (25 epochs) - ~30 seconds")
+    print("   2. Normal (50 epochs) - ~1 minute")
+    print("   3. Long (100 epochs) - ~2 minutes")
+
+    epoch_choice = input("\n   Enter choice (1-3): ").strip()
+    epochs_map = {'1': 25, '2': 50, '3': 100}
+    epochs = epochs_map.get(epoch_choice, 50)
+
+    # Start training
+    print(f"\n4️⃣  Starting training...")
+    print(f"   Noise level: {int(noise_level*100)}%")
+    print(f"   Training samples: {clean_samples + noisy_samples}")
+    print(f"   Epochs: {epochs}")
+
+    # Generate data
+    generator = SevenSegmentDataGenerator(seed=42)
+
+    if noise_level == 0.0:
+        # Pure clean data
+        X_train, y_train = generator.generate_clean_data(
+            samples_per_digit=(clean_samples + noisy_samples) // 10
+        )
+        X_test, y_test = generator.generate_clean_data(samples_per_digit=50)
+    else:
+        # Mixed data with noise
+        X_train, y_train, X_test, y_test = generator.generate_mixed_dataset(
+            clean_samples=clean_samples,
+            noisy_samples=noisy_samples,
+            noise_level=noise_level,
+            noise_types=['flip', 'missing', 'extra']
+        )
+
+    print(f"   ✓ Generated {len(X_train)} training examples")
+
+    # Prepare data loaders
+    train_dataset = torch.utils.data.TensorDataset(
+        torch.tensor(X_train),
+        torch.tensor(y_train)
+    )
+    test_dataset = torch.utils.data.TensorDataset(
+        torch.tensor(X_test),
+        torch.tensor(y_test)
+    )
+
+    train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=32, shuffle=True)
+    test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=32, shuffle=False)
+
+    # Create and train model
+    model = SevenSegmentNN(hidden_layers=[32, 16], dropout_rate=0.3, use_batch_norm=True)
+    trainer = SevenSegmentTrainer(model=model, learning_rate=0.001, device='cpu')
+
+    print("\n5️⃣  Training in progress...\n")
+    trainer.train(train_loader=train_loader, val_loader=test_loader, epochs=epochs, verbose=True)
+
+    # Evaluate
+    print_header("TRAINING COMPLETE")
+    test_loss, test_acc = trainer.validate(test_loader)
+    print(f"\n🎯 Final Test Accuracy: {test_acc:.2f}%")
+    print(f"📊 Final Test Loss: {test_loss:.4f}")
+
+    # Save with custom name
+    save_choice = input("\n💾 Save this model? (y/n): ").strip().lower()
+    if save_choice == 'y':
+        model_name = f"model_noise{int(noise_level*100)}_epochs{epochs}.pth"
+        trainer.save_model(model_name)
+        print(f"   ✓ Model saved as: {model_name}")
+
+    return model, trainer
 
 
 def show_digit_patterns():
@@ -319,6 +461,16 @@ def learning_resources():
    - Lower loss = better predictions
    - Goal: minimize loss during training
 
+7. NOISE & ROBUSTNESS (Important!)
+   - Real sensors have errors (noise)
+   - Training with noise makes models robust
+   - Types of noise:
+     * Bit Flip: 0 becomes 1 or 1 becomes 0
+     * Missing Segment: LEDs that don't light up
+     * Extra Segment: False signals
+   - Noise level: 15% means 15% chance of error per segment
+   - Models trained with noise work better in real world!
+
 📁 PROJECT FILES:
 
    main.py              - This file! Main menu/control
@@ -360,13 +512,14 @@ Choose an option:
 2. 🧪 TEST the model (Check how well it learned)
 3. 🔮 PREDICT a digit (Try it yourself)
 4. 📺 SHOW digit patterns (See all digits)
-5. 📚 LEARNING resources (Understand the code)
-6. 🚪 EXIT
+5. 🔊 TRAIN with custom NOISE (Advanced training)
+6. 📚 LEARNING resources (Understand the code)
+7. 🚪 EXIT
 
 What would you like to do?
 """)
 
-        choice = input("👉 Enter your choice (1-6): ").strip()
+        choice = input("👉 Enter your choice (1-7): ").strip()
 
         if choice == '1':
             train_model()
@@ -377,12 +530,14 @@ What would you like to do?
         elif choice == '4':
             show_digit_patterns()
         elif choice == '5':
-            learning_resources()
+            train_with_custom_noise()
         elif choice == '6':
+            learning_resources()
+        elif choice == '7':
             print("\n👋 Goodbye! Keep learning!\n")
             sys.exit(0)
         else:
-            print("\n❌ Invalid choice! Please enter 1-6.")
+            print("\n❌ Invalid choice! Please enter 1-7.")
 
 
 if __name__ == '__main__':
