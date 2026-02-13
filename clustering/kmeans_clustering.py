@@ -5,17 +5,7 @@ from sklearn.datasets import make_blobs
 from sklearn.cluster import KMeans
 
 def run_kmeans_example():
-    """
-    Runs the K-Means clustering example.
-    """
-    print("---------------------------------------------------------")
-    print("Running K-Means Clustering Example...")
-    print("---------------------------------------------------------")
-
-    # 1. Generate the dataset
-    # We create a synthetic dataset using make_blobs.
-    # n_samples=100: We will generate 100 data points.
-    # random_state=12: Ensures that we get the same random data every time we run the code.
+   
     print("Generating dataset...")
     X, _ = make_blobs(n_samples=100, random_state=12)
 
@@ -23,7 +13,6 @@ def run_kmeans_example():
     d = pd.DataFrame(X)
     
     # 2. Visualize the raw data (Before Clustering)
-    # We plot the data points to see what they look like before any grouping.
     print("Plotting raw data...")
     plt.figure(figsize=(8, 6))
     plt.scatter(d[0], d[1], c='gray', marker='o', edgecolor='k', s=50)
@@ -33,17 +22,13 @@ def run_kmeans_example():
     plt.show() # This will open a window with the plot
 
     # 3. Apply K-Means Clustering
-    # We initialize the KMeans algorithm.
-    # n_clusters=3: We want to group the data into 3 clusters.
     print("Applying K-Means clustering with 3 clusters...")
     kmeans = KMeans(n_clusters=3, random_state=12)
     
     # Fit the model to our data
-    # This keeps adjusting the centroids until the clusters are stable.
     kmeans.fit(d)
 
     # 4. Predict the cluster labels
-    # Assign each data point to one of the 3 clusters (0, 1, or 2).
     labels = kmeans.predict(d)
     
     # Add the labels to our DataFrame so we can see which cluster each point belongs to
@@ -76,9 +61,6 @@ def run_kmeans_example():
     plt.ylabel("Feature 1")
     plt.legend()
     plt.show() # Open the second plot
-    
-    print("K-Means Example Completed.")
-    print("---------------------------------------------------------")
 
 if __name__ == "__main__":
     run_kmeans_example()

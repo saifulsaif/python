@@ -26,6 +26,27 @@ K-Means is one of the simplest and most popular clustering algorithms. It tries 
 
 ---
 
+### Advanced K-Means: Finding the Optimal K (The Elbow Method)
+
+In practice, we often don't know how many clusters (**K**) exist in our data. The **Elbow Method** is a popular technique to find the optimal number of clusters.
+
+#### The Elbow Method Concept
+- We run K-Means for a range of **K** values (e.g., 1 to 10).
+- For each **K**, we calculate the **Within-Cluster Sum of Squares (WCSS)**, which measures the compactness of the clusters.
+- As **K** increases, WCSS decreases. We look for the "elbow" point where the rate of decrease slows down significantly. This point is often the optimal **K**.
+
+#### Example: Customer Segmentation
+In the [kmeans_advanced.py](file:///Users/mdsaifulislam/Documents/GitHub/python/clustering/kmeans_advanced.py) script, we use a synthetic dataset representing customers with two features:
+1. **Annual Income (k$)**
+2. **Spending Score (1-100)**
+
+The script performs the following:
+1. Generates 300 data points with 5 natural clusters.
+2. Applies the Elbow Method to verify that 5 is indeed the optimal choice.
+3. Visualizes the resulting 5 clusters and their centroids.
+
+---
+
 ## 2. Gaussian Mixture Models (GMM)
 
 ### Concept

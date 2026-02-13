@@ -5,16 +5,8 @@ from sklearn.datasets import make_blobs
 from sklearn.mixture import GaussianMixture
 
 def run_gmm_example():
-    """
-    Runs the Gaussian Mixture Model (GMM) clustering example.
-    """
-    print("---------------------------------------------------------")
-    print("Running GMM Clustering Example...")
-    print("---------------------------------------------------------")
 
     # 1. Generate the dataset
-    # We create a synthetic dataset using make_blobs, similar to the K-Means example.
-    # We use the same random_state=12 to allow for comparison between the two methods.
     print("Generating dataset...")
     X, _ = make_blobs(n_samples=100, random_state=12)
 
@@ -31,17 +23,13 @@ def run_gmm_example():
     plt.show()
 
     # 3. Apply GMM Clustering
-    # We initialize the GaussianMixture model.
-    # n_components=3: This is analogous to K in K-Means, asking for 3 gaussian distributions.
     print("Applying GMM clustering with 3 components (clusters)...")
     gmm = GaussianMixture(n_components=3, random_state=12)
 
     # Fit the data
-    # GMM tries to find the best mix of Gaussian distributions that generated this data.
     gmm.fit(d)
 
     # 4. Predict the cluster labels
-    # Assign each data point to the most likely Gaussian component.
     labels = gmm.predict(d)
 
     # Check for convergence
@@ -78,8 +66,6 @@ def run_gmm_example():
     plt.legend()
     plt.show()
 
-    print("GMM Example Completed.")
-    print("---------------------------------------------------------")
 
 if __name__ == "__main__":
     run_gmm_example()

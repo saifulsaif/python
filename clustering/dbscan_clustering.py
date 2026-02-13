@@ -5,12 +5,6 @@ from sklearn.datasets import make_blobs
 from sklearn.cluster import DBSCAN
 
 def run_dbscan_example():
-    """
-    Runs the DBSCAN clustering example.
-    """
-    print("---------------------------------------------------------")
-    print("Running DBSCAN Clustering Example...")
-    print("---------------------------------------------------------")
 
     # 1. Generate the dataset
     print("Generating dataset...")
@@ -26,10 +20,7 @@ def run_dbscan_example():
     plt.ylabel("Feature 1")
     plt.show()
 
-    # 3. Apply DBSCAN
-    # DBSCAN (Density-Based Spatial Clustering of Applications with Noise)
-    # eps=1: The maximum distance between two samples for one to be considered as in the neighborhood of the other.
-    # min_samples=10: The number of samples (or total weight) in a neighborhood for a point to be considered as a core point.
+
     print("Applying DBSCAN with eps=1 and min_samples=10...")
     dbscan = DBSCAN(eps=1, min_samples=10)
     
@@ -73,8 +64,6 @@ def run_dbscan_example():
     plt.legend()
     plt.show()
     
-    print("DBSCAN Example Completed.")
-    print("---------------------------------------------------------")
 
 if __name__ == "__main__":
     run_dbscan_example()
